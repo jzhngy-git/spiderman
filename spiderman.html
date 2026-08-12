@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spider-Man Animation</title>
+  <style>
+    body {
+      background: lightblue;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .spider-man {
+      width: 500px;
+      height: 650px;
+      background: url("spiderman.png") no-repeat center;
+      background-size: contain;
+      transform: translateY(-700px); /* starting position */
+    }
+
+    @keyframes move {
+      from { transform: translateY(-700px); }
+      to { transform: translateY(-70px); }
+    }
+
+    button {
+      /* margin-top: 3px; */
+      padding: 12px 28px;
+      position: absolute;
+      font-size: 18px;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(135deg, #e50914, #b00020);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+    }
+
+    button:active {
+      transform: scale(0.95);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="spider-man"></div>
+  <button id="startBtn">Find Spiderman</button>
+
+  <script>
+    const spiderMan = document.querySelector('.spider-man');
+    const button = document.getElementById('startBtn');
+
+    button.addEventListener('click', () => {
+      // Reset animation if already played
+      spiderMan.style.animation = 'none';
+      void spiderMan.offsetWidth; // force reflow
+      spiderMan.style.animation = 'move 3s ease forwards';
+
+      // Remove button after pressed
+      button.remove();
+    });
+  </script>
+</body>
+</html>
